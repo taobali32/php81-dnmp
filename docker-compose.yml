@@ -9,6 +9,8 @@ services:
         NGINX_INSTALL_APPS: ${NGINX_INSTALL_APPS}
     container_name: nginx
     ports:
+      - "81:81"
+      - "82:82"
       - "${NGINX_HTTP_HOST_PORT}:80"
       - "${NGINX_HTTPS_HOST_PORT}:443"
     volumes:
@@ -37,8 +39,12 @@ services:
         PHP_EXTENSIONS: ${PHP81_EXTENSIONS}
         TZ: "$TZ"
     container_name: php81
+    ports:
+      - "9501:9501"
+      - "9502:9502"
     expose:
       - 9501
+      - 9502
     volumes:
       - ${SOURCE_DIR}:/www/:rw
       - ${PHP81_PHP_CONF_FILE}:/usr/local/etc/php/php.ini:ro
